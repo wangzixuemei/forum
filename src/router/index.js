@@ -1,25 +1,46 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+// import ForumHome from "../components/forumHome/ForumHome.vue";
+// import LoginBackStage from "../components/backstagehome/LoginBackStage.vue";
+// import BackStageHome from "../components/backstagehome/BackStageHome.vue";
+import NotFoundComponent from "../components/NotFoundComponent.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: Home
+    name: "forumhome",
+    component: () => import("../components/forumHome/ForumHome.vue")
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function() {
-      return import(/* webpackChunkName: "about" */ "../views/About.vue");
-    }
-  }
+    path: "/loginbackstage",
+    name: "loginbackstage",
+    component: () => import("../components/backstagehome/LoginBackStage.vue")
+  },
+
+  {
+    path: "/backstagehome",
+    component: () => import("../components/backstagehome/BackStageHome.vue")
+  },
+  {
+    path: "/userhome",
+    component: () => import("../components/userhome/UserHome")
+  },
+  {
+    path: "/allarticlehome",
+    component: () => import("../components/articlehome/Allarticlehome")
+  },
+  {
+    path: "/commenthome",
+    component: () => import("../components/commenthome/CommentHome")
+  },
+  {
+    path: "/registerhome",
+    component: () => import("../components/register/RegisterHome")
+  },
+
+  { path: "*", component: NotFoundComponent }
 ];
 
 const router = new VueRouter({
